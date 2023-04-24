@@ -8,3 +8,9 @@ exports.getUsers = async (req, res, next) => {
         next(err);
     }
 }
+
+exports.postUser = async (req, res, next) => {
+    const user = {
+        
+    }
+}
