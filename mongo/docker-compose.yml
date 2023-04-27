@@ -1,13 +1,22 @@
-# Use root/example as user/password credentials
 version: '3.1'
 
 services:
-
   mongo:
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+    image: mvertes/alpine-mongo:3.4.10-0
+    container_name: mongodb-sample
+    restart: "no"
+    volumes:
+      - ./db/sample:/data/db
+    networks:
+      - mongodb
     ports:
-      - 27017:27017
+      - 27123:27017
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "4m"
+        max-file: "2"
+
+networks:
+  mongodb:
+    name: mongodb-sample
